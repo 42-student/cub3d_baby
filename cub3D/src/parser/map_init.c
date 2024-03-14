@@ -6,7 +6,7 @@
 /*   By: sebastian <sebastian@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 09:12:15 by smargine          #+#    #+#             */
-/*   Updated: 2024/02/26 20:40:24 by sebastian        ###   ########.fr       */
+/*   Updated: 2024/03/14 19:18:43 by sebastian        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,14 @@ int	ft_map_init(char *file, t_pars *pars)
 			start = ft_check_line(line);
 		if (start && !ft_check_line(line))
 		{
+			free(line);
 			close(fd);
 			return (0);
 		}
 		if (start)
 		{
 			ft_fill_map(line, pars->map[i]);
-			i++; // maybe map[i++]
+			i++;
 		}
 		free(line);
 		line = get_next_line(fd);

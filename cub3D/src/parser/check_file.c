@@ -6,7 +6,7 @@
 /*   By: sebastian <sebastian@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:26:17 by smargine          #+#    #+#             */
-/*   Updated: 2024/02/26 20:40:02 by sebastian        ###   ########.fr       */
+/*   Updated: 2024/03/14 19:15:33 by sebastian        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	ft_check_file(char *file)
 		if (!start && !ft_check_content(line))
 		{
 			ft_putendl_fd("Error! Invalid content.", 2);
+			free(line);
 			close(fd);
 			return (1);
 		}
@@ -65,6 +66,7 @@ int	ft_check_file(char *file)
 		if (end && !ft_check_if_empty(line))
 		{
 			ft_putendl_fd("Error! Trailing data end.", 2);
+			free(line);
 			close(fd);
 			return (1);
 		}
@@ -102,7 +104,10 @@ int ft_check_content(char *line)
 	if (!temp)
 		return (1);
 	if (temp[0] && !ft_check_texture(temp) && !ft_check_color(temp))
+	{
+		free(temp);
 		return (0);
+	}
 	free(temp);
 	return (1);
 }

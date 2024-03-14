@@ -6,7 +6,7 @@
 /*   By: sebastian <sebastian@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:15:13 by smargine          #+#    #+#             */
-/*   Updated: 2024/02/26 20:40:35 by sebastian        ###   ########.fr       */
+/*   Updated: 2024/03/14 19:23:25 by sebastian        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ int	ft_pars_line(char *file, t_pars *pars)
 		temp = ft_strtrim(line, " \n");
 		if (!temp)
 		{
+			free(line);
 			close(fd);
 			return (1);
 		}
 		if (ft_store_data_line(temp, pars))
 		{
+			free(temp);
+			free(line);
 			close(fd);
 			return (1);
 		}
